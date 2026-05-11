@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marie Claire Paris Salon – Thoraipakkam OMR, Chennai</title>
+  <meta name="description" content="Marie Claire Paris – top-rated unisex salon in Thoraipakkam OMR, Chennai. Expert haircuts, facials, bridal & special offers. Grace Towers, Plot 185, Rajiv Gandhi Salai." />
+  <link rel="icon" type="image/x-icon" href="https://www.marieclairesalon.in/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Bodoni Moda is the closest web font to the MC wordmark; fallback to Playfair Display -->
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@700;800;900&family=Playfair+Display:wght@700;800;900&family=Josefin+Sans:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black:  #111111;
+      --red:    #c0392b;
+      --mid:    #555555;
+      --light:  #f7f7f7;
+      --white:  #ffffff;
+      --border: #dddddd;
+      --mc-font: 'Bodoni Moda', 'Playfair Display', Georgia, serif;
+      --nav-font: 'Josefin Sans', sans-serif;
+      --body-font: 'Libre Baskerville', Georgia, serif;
+      --nav-h: 138px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body-font); background: var(--white); color: var(--black); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+    /* ══════════════════════════════════
+       HEADER
+    ══════════════════════════════════ */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 900; background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-topbar {
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      gap: 24px; padding: 6px 20px; flex-wrap: wrap;
+    }
+    .topbar-item {
+      font-family: var(--nav-font); font-size: 0.58rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 5px;
+    }
+    .topbar-item a { color: rgba(255,255,255,0.7); }
+    .topbar-item a:hover { color: var(--white); }
+    .topbar-sep { color: rgba(255,255,255,0.25); font-size: 0.7rem; }
+
+    /* ── LOGO ── */
+    .header-logo-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 10px 0 0; cursor: pointer; user-select: none;
+    }
+    .mc-branch {
+      font-family: var(--nav-font);
+      font-size: 0.54rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    /* Nav strip */
+    .nav-strip {
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: center;
+    }
+    .nav-btn {
+      font-family: var(--nav-font); font-size: 0.63rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--black);
+      padding: 10px 18px; border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-btn:hover { color: var(--red); }
+    .nav-btn.active { border-bottom-color: var(--black); }
+    .hamburger { display: none; position: absolute; right: 16px; top: 28px; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--black); }
+
+    /* ══════════════════════════════════
+       FLOATING BUTTONS
+    ══════════════════════════════════ */
+    .float-btns { position: fixed; right: 16px; bottom: 80px; display: flex; flex-direction: column; gap: 12px; z-index: 800; }
+    .float-btn { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 18px rgba(0,0,0,0.25); transition: transform 0.2s; text-decoration: none; }
+    .float-btn:hover { transform: scale(1.08); }
+    .float-btn.call { background: #34A853; }
+    .float-btn.appt { background: #1976D2; }
+    .float-btn svg { width: 26px; height: 26px; fill: var(--white); }
+
+    /* ══════════════════════════════════
+       PAGE SHELL
+    ══════════════════════════════════ */
+    .page { display: none; padding-top: var(--nav-h); min-height: 100vh; animation: fadeIn 0.4s ease both; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ══════════════════════════════════
+       SLIDER
+    ══════════════════════════════════ */
+    .slider { position: relative; width: 100%; overflow: hidden; background: #111; }
+    .slider-track { display: flex; transition: transform 0.7s cubic-bezier(0.77,0,0.18,1); }
+    .slide { flex: 0 0 100%; }
+    .slide img { width: 100%; height: 78vh; object-fit: cover; object-position: center top; display: block; }
+    .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.78); color: var(--black); width: 38px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; cursor: pointer; z-index: 10; border: none; transition: background 0.2s; }
+    .slider-arrow:hover { background: rgba(255,255,255,0.97); }
+    .slider-arrow.prev { left: 0; } .slider-arrow.next { right: 0; }
+    .slider-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; transition: background 0.2s; }
+    .dot.active { background: var(--white); }
+
+    /* ══════════════════════════════════
+       SECTION HEADING
+    ══════════════════════════════════ */
+    .section-header { text-align: center; padding: 52px 20px 0; }
+    .section-header h2 { font-family: var(--mc-font); font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 800; margin-bottom: 8px; }
+    .section-rule { display: flex; align-items: center; gap: 14px; max-width: 340px; margin: 12px auto 34px; }
+    .section-rule::before, .section-rule::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .section-rule-text { font-family: var(--nav-font); font-size: 0.57rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--mid); white-space: nowrap; }
+
+    /* ══════════════════════════════════
+       HOME TILES
+    ══════════════════════════════════ */
+    .home-tiles { display: grid; grid-template-columns: 1fr 1fr; max-width: 1100px; margin: 10px auto 50px; padding: 0 20px; gap: 24px; }
+    .tile { position: relative; overflow: hidden; cursor: pointer; }
+    .tile img { width: 100%; height: 400px; object-fit: cover; object-position: center; transition: transform 0.65s ease; display: block; }
+    .tile:hover img { transform: scale(1.05); }
+    .tile-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.42); color: var(--white); font-family: var(--mc-font); font-size: 1.8rem; font-weight: 700; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .tile-arrow { opacity: 0; transform: translateX(-6px); transition: 0.3s; font-size: 1.2rem; }
+    .tile:hover .tile-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ══════════════════════════════════
+       GOOGLE REVIEWS
+    ══════════════════════════════════ */
+    .reviews-section { background: #fef3e8; padding: 60px 20px 70px; }
+    .reviews-header-row { max-width: 1100px; margin: 0 auto 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; background: var(--white); border-radius: 12px; padding: 28px 36px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+    .reviews-header-left h3 { font-family: var(--mc-font); font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .stars-row { display: flex; align-items: center; gap: 6px; }
+    .stars { color: #F9AB00; font-size: 1.1rem; letter-spacing: 2px; }
+    .review-count { font-family: var(--nav-font); font-size: 0.65rem; color: var(--mid); letter-spacing: 0.1em; border-left: 1px solid var(--border); padding-left: 10px; margin-left: 4px; }
+    .overall-score { font-family: var(--mc-font); font-size: 3rem; font-weight: 800; color: var(--black); line-height: 1; margin-right: 20px; }
+    .write-review-btn { background: #1a73e8; color: var(--white); font-family: var(--nav-font); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 28px; border-radius: 6px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+    .write-review-btn:hover { background: #1557b0; }
+    .reviews-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .review-card { background: var(--white); border-radius: 10px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(0,0,0,0.06); }
+    .review-top { display: flex; align-items: center; justify-content: space-between; }
+    .review-stars { color: #F9AB00; font-size: 0.9rem; }
+    .review-num { font-family: var(--nav-font); font-weight: 700; font-size: 0.95rem; color: #F9AB00; margin-right: 4px; }
+    .review-date { font-family: var(--nav-font); font-size: 0.6rem; color: var(--mid); }
+    .review-text { font-size: 0.78rem; line-height: 1.75; color: #333; flex: 1; }
+    .review-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .reviewer-info { display: flex; align-items: center; gap: 8px; }
+    .reviewer-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--nav-font); font-size: 0.65rem; font-weight: 600; color: var(--white); flex-shrink: 0; }
+    .reviewer-name { font-family: var(--nav-font); font-size: 0.65rem; font-weight: 600; color: var(--black); }
+    .google-g { width: 18px; height: 18px; }
+
+    /* ══════════════════════════════════
+       INSTAGRAM
+    ══════════════════════════════════ */
+    .insta-section { max-width: 1100px; margin: 0 auto 60px; padding: 0 20px; }
+    .insta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+    .insta-embed-wrap { width: 100%; overflow: hidden; border: 1px solid var(--border); background: var(--light); min-height: 480px; position: relative; }
+    .insta-embed-wrap iframe { width: 100% !important; min-width: unset !important; border: none !important; display: block; }
+    .insta-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; pointer-events: none; }
+    .insta-placeholder svg { width: 32px; height: 32px; opacity: 0.3; }
+    .insta-placeholder span { font-family: var(--nav-font); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); opacity: 0.6; }
+    .insta-follow-btn { display: flex; align-items: center; justify-content: center; gap: 9px; width: fit-content; margin: 24px auto 0; background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: var(--white); font-family: var(--nav-font); font-size: 0.63rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; padding: 13px 30px; text-decoration: none; transition: opacity 0.2s; }
+    .insta-follow-btn:hover { opacity: 0.88; }
+    .insta-follow-btn svg { width: 16px; height: 16px; fill: var(--white); }
+
+    /* ══════════════════════════════════
+       SPECIAL OFFERS PAGE
+       Offer images are the actual promo
+       posters uploaded by the client
+    ══════════════════════════════════ */
+    .offers-hero {
+      width: 100%; height: 38vh;
+      background: linear-gradient(135deg, rgba(17,17,17,0.75) 0%, rgba(192,57,43,0.25) 100%),
+        url('https://www.marieclairesalon.in/img/ban-3.jpg') center / cover no-repeat;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; color: var(--white); padding: 0 20px;
+    }
+    .offers-hero h1 { font-family: var(--mc-font); font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; letter-spacing: 0.04em; }
+    .offers-hero p { font-family: var(--nav-font); font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; margin-top: 10px; opacity: 0.85; }
+    .offers-hero .hero-sub { font-size: 0.85rem; letter-spacing: 0.05em; text-transform: none; font-family: var(--body-font); font-style: italic; margin-top: 8px; opacity: 0.8; }
+
+    .offers-wrapper { max-width: 1100px; margin: 52px auto 70px; padding: 0 24px; }
+
+    /* Offer poster grid — shows the actual uploaded promo images */
+    .offer-posters-intro {
+      text-align: center; margin-bottom: 40px;
+    }
+    .offer-posters-intro h2 { font-family: var(--mc-font); font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
+    .offer-posters-intro p { font-family: var(--nav-font); font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
+
+    /* 2-column poster grid — large poster images with WhatsApp claim button */
+    .offers-poster-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .offer-poster-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+      display: flex; flex-direction: column;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .offer-poster-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+      transform: translateY(-3px);
+    }
+
+    /* The poster image fills naturally — no cropping so all text is visible */
+    .offer-poster-img {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+      background: var(--light);
+    }
+
+    .offer-poster-footer {
+      padding: 18px 22px 20px;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .offer-poster-title {
+      font-family: var(--mc-font); font-size: 1rem; font-weight: 700;
+      color: var(--black); line-height: 1.3;
+    }
+    .offer-poster-price {
+      font-family: var(--nav-font); font-size: 0.75rem; font-weight: 600;
+      color: var(--red); white-space: nowrap;
+    }
+    .offer-claim-btn {
+      display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+      background: #25D366; color: var(--white);
+      font-family: var(--nav-font); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 11px 18px; text-decoration: none; transition: background 0.25s;
+      white-space: nowrap;
+    }
+    .offer-claim-btn:hover { background: #1aab52; }
+    .offer-claim-btn svg { width: 14px; height: 14px; fill: var(--white); flex-shrink: 0; }
+
+    /* Offer terms note */
+    .offer-terms {
+      text-align: center; margin-top: 16px;
+      font-family: var(--nav-font); font-size: 0.6rem; color: var(--mid);
+      letter-spacing: 0.08em; line-height: 2;
+    }
+    .offer-terms a { color: var(--red); text-decoration: underline; }
+
+    /* ══════════════════════════════════
+       SERVICES PAGE
+    ══════════════════════════════════ */
+    .services-hero { width: 100%; height: 45vh; background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 100%), url('https://www.marieclairesalon.in/img/ban-2.jpg') center center / cover no-repeat; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; color: var(--white); }
+    .services-hero h1 { font-family: var(--mc-font); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: 0.04em; }
+    .services-hero p { font-family: var(--nav-font); font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; margin-top: 10px; opacity: 0.85; }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; max-width: 1100px; margin: 48px auto 20px; padding: 0 24px; gap: 32px; }
+    .svc-card { border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
+    .svc-card-img-wrap { width: 100%; height: 300px; overflow: hidden; flex-shrink: 0; }
+    .svc-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .svc-card-body { padding: 28px 28px 32px; flex: 1; display: flex; flex-direction: column; }
+    .svc-card-eyebrow { font-family: var(--nav-font); font-size: 0.56rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+    .svc-card-title { font-family: var(--mc-font); font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+    .svc-card-note { font-family: var(--nav-font); font-size: 0.6rem; color: var(--mid); letter-spacing: 0.06em; margin-bottom: 20px; font-style: italic; }
+    .price-section-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .price-section-toggle .toggle-title { font-family: var(--nav-font); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--black); }
+    .toggle-icon { font-size: 0.9rem; color: var(--mid); transition: transform 0.3s; }
+    .price-section-body { overflow: hidden; max-height: 0; transition: max-height 0.45s ease; }
+    .price-section-body.open { max-height: 9999px; }
+    .price-section-toggle.open .toggle-icon { transform: rotate(180deg); }
+    .price-category { margin-bottom: 22px; }
+    .price-cat-sub { font-family: var(--nav-font); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin: 8px 0 6px; }
+    .price-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--border); font-family: var(--nav-font); font-size: 0.7rem; color: var(--mid); }
+    .price-row:last-child { border-bottom: none; }
+    .price-val { font-weight: 600; color: var(--black); white-space: nowrap; margin-left: 12px; }
+    .prime-note { font-family: var(--nav-font); font-size: 0.6rem; color: var(--red); letter-spacing: 0.08em; margin-top: 16px; padding: 10px 14px; border: 1px dashed var(--red); border-radius: 2px; }
+    .dl-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--white); font-family: var(--nav-font); font-size: 0.63rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; padding: 13px 24px; transition: background 0.25s; text-decoration: none; margin-top: 24px; align-self: flex-start; }
+    .dl-btn:hover { background: var(--red); }
+    .dl-btn svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+
+    /* ══════════════════════════════════
+       ABOUT PAGE
+    ══════════════════════════════════ */
+    .about-banner { width: 100%; height: 40vh; object-fit: cover; object-position: center top; display: block; }
+    .about-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; max-width: 1040px; margin: 52px auto 70px; padding: 0 24px; gap: 56px; align-items: start; }
+    .about-copy h3 { font-family: var(--mc-font); font-size: 1.75rem; font-weight: 700; margin-bottom: 14px; line-height: 1.25; }
+    .about-copy h4 { font-family: var(--nav-font); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin: 24px 0 8px; }
+    .about-copy p { font-size: 0.84rem; line-height: 2; color: var(--mid); margin-bottom: 14px; }
+    .about-list { list-style: none; margin-top: 8px; }
+    .about-list li { font-family: var(--nav-font); font-size: 0.72rem; color: var(--mid); padding: 9px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+    .about-list li::before { content: ''; width: 14px; height: 1px; background: var(--black); flex-shrink: 0; }
+    .addr-card { border: 1px solid var(--border); padding: 32px; position: sticky; top: calc(var(--nav-h) + 16px); }
+    .addr-eyebrow { font-family: var(--nav-font); font-size: 0.56rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+    .addr-name { font-family: var(--mc-font); font-size: 1.5rem; font-weight: 700; margin-bottom: 2px; }
+    .addr-branch { font-family: var(--nav-font); font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 18px; }
+    .addr-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+    .addr-icon { font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; color: var(--red); }
+    .addr-text { font-size: 0.8rem; line-height: 1.9; color: var(--mid); }
+    .addr-text a { color: var(--mid); text-decoration: underline; text-underline-offset: 3px; }
+    .addr-text a:hover { color: var(--black); }
+    .addr-divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .wa-btn { display: flex; align-items: center; justify-content: center; gap: 11px; width: 100%; background: #25D366; color: var(--white); font-family: var(--nav-font); font-size: 0.63rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 20px; border: none; cursor: pointer; transition: background 0.25s; text-decoration: none; margin-bottom: 12px; }
+    .wa-btn:hover { background: #1aab52; }
+    .wa-btn svg { width: 18px; height: 18px; fill: var(--white); flex-shrink: 0; }
+    .map-box { margin-top: 12px; border: 1px solid var(--border); overflow: hidden; }
+    .map-box iframe { width: 100%; height: 220px; border: none; display: block; }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer { background: var(--black); color: rgba(255,255,255,0.45); text-align: center; padding: 28px 20px; font-family: var(--nav-font); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; line-height: 2.4; }
+    footer strong { color: rgba(255,255,255,0.75); font-weight: 400; }
+    footer a { color: rgba(255,255,255,0.55); text-decoration: underline; text-underline-offset: 3px; }
+    footer a:hover { color: var(--white); }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 900px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .offers-poster-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      :root { --nav-h: 120px; }
+      .hamburger { display: flex; }
+      .nav-strip { flex-direction: column; align-items: stretch; display: none; border-top: 1px solid var(--border); }
+      .nav-strip.open { display: flex; }
+      .nav-btn { padding: 12px 20px; border-bottom: 1px solid var(--border); border-left: none; }
+      .nav-btn.active { border-left: 3px solid var(--black); }
+      .home-tiles, .services-grid, .about-layout { grid-template-columns: 1fr; }
+      .insta-grid { grid-template-columns: 1fr 1fr; }
+      .addr-card { position: static; }
+      .header-topbar { gap: 12px; }
+      .offer-poster-footer { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 600px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+      .insta-grid { grid-template-columns: 1fr; }
+      .mc-wordmark { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ FLOATING BUTTONS ══ -->
+<div class="float-btns">
+  <a class="float-btn call" href="tel:+919840029857" title="Call Us" aria-label="Call Us">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.32.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.18 21 3 13.82 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.26.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+  </a>
+  <a class="float-btn appt"
+    href="https://wa.me/919840029857?text=Hello%20Marie%20Claire%20Salon%20%E2%80%93%20Thoraipakkam%20OMR!%20I%20would%20like%20to%20book%20an%20appointment.%20Could%20you%20please%20share%20available%20slots%3F%20Thank%20you!"
+    target="_blank" rel="noopener noreferrer" title="Book Appointment" aria-label="Book Appointment on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+  </a>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header id="site-header">
+  <div class="header-topbar">
+    <span class="topbar-item">🕙 Mon–Sun: 10:00 AM – 9:00 PM</span>
+    <span class="topbar-sep">·</span>
+    <span class="topbar-item"><a href="tel:+914447914421">044-47914421</a></span>
+    <span class="topbar-sep">·</span>
+    <span class="topbar-item"><a href="tel:+919840029856">98400 29856</a></span>
+    <span class="topbar-sep">·</span>
+    <span class="topbar-item"><a href="mailto:thoraipakkam@marieclairesalon.in">thoraipakkam@marieclairesalon.in</a></span>
+  </div>
+
+  <!--
+    LOGO — precisely matches Image 5 reference:
+    - "marie claire" bold serif with rounded distinctively MC letterforms
+    - "PARIS" in wider spaced uppercase below
+    - Red diagonal rule lines flanking "SALON" in red
+    - Branch name below
+  -->
+  <div class="header-logo-wrap" onclick="showPage('home')">
+    <!--
+      UNIFIED SVG LOGO — all elements in one coordinate system.
+      ViewBox: 0 0 400 80
+      "marie claire" centred at x=200
+      "PARIS" centred at x=200
+      SALON row centred at x=200 — same width as the text above
+
+      Left triangle:  sharp tip at x=18, flat right end at x=158, thickness 4px
+      Right triangle: flat left end at x=242, sharp tip at x=382, thickness 4px
+      SALON text centred at x=200 between x=158 and x=242
+    -->
+    <svg
+      viewBox="0 0 400 78"
+      xmlns="http://www.w3.org/2000/svg"
+      style="display:block;width:280px;height:auto;margin:0 auto;"
+      aria-label="Marie Claire Paris Salon"
+    >
+      <!-- marie claire wordmark -->
+      <text
+        x="200" y="44"
+        text-anchor="middle"
+        font-family="'Bodoni Moda','Playfair Display',Georgia,serif"
+        font-weight="900"
+        font-size="46"
+        letter-spacing="-0.5"
+        fill="#111111"
+      >marie claire</text>
+
+      <!-- PARIS -->
+      <text
+        x="200" y="57"
+        text-anchor="middle"
+        font-family="'Josefin Sans',Arial,sans-serif"
+        font-weight="600"
+        font-size="9"
+        letter-spacing="7"
+        fill="#111111"
+      >PARIS</text>
+
+      <!-- LEFT blade: sharp tip left, flat right end, top edge horizontal, bottom diagonal -->
+      <polygon points="18,68  158,68  158,71" fill="#c0392b"/>
+
+      <!-- RIGHT blade: flat left end, sharp tip right, top edge horizontal, bottom diagonal -->
+      <polygon points="242,68  382,68  242,71" fill="#c0392b"/>
+
+      <!-- SALON centred between blades -->
+      <text
+        x="200" y="72"
+        text-anchor="middle"
+        font-family="'Josefin Sans',Arial,sans-serif"
+        font-weight="600"
+        font-size="9"
+        letter-spacing="5"
+        fill="#c0392b"
+      >SALON</text>
+    </svg>
+
+    <!-- Branch line below SVG -->
+    <span class="mc-branch">Thoraipakkam OMR &nbsp;·&nbsp; Chennai</span>
+  </div>
+
+  <button class="hamburger" id="ham-btn" aria-label="Menu" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="nav-strip" id="main-nav">
+    <button class="nav-btn active" data-page="home"     onclick="showPage('home')">Home</button>
+    <button class="nav-btn"        data-page="offers"   onclick="showPage('offers')">Special Offers</button>
+    <button class="nav-btn"        data-page="services" onclick="showPage('services')">Services</button>
+    <button class="nav-btn"        data-page="about"    onclick="showPage('about')">About</button>
+  </nav>
+</header>
+
+
+<!-- ══════════════════════════════════
+     HOME PAGE
+══════════════════════════════════ -->
+<section class="page active" id="page-home">
+
+  <div class="slider" id="slider">
+    <div class="slider-track" id="slider-track">
+      <div class="slide"><img src="https://www.marieclairesalon.in/img/ban6.jpg"  alt="Marie Claire" loading="eager" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=80'" /></div>
+      <div class="slide"><img src="https://www.marieclairesalon.in/img/ban-2.jpg" alt="Marie Claire" loading="lazy"  onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1600&q=80'" /></div>
+      <div class="slide"><img src="https://www.marieclairesalon.in/img/ban-3.jpg" alt="Marie Claire" loading="lazy"  onerror="this.src='https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1600&q=80'" /></div>
+      <div class="slide"><img src="https://www.marieclairesalon.in/img/ban-4.jpg" alt="Marie Claire" loading="lazy"  onerror="this.src='https://images.unsplash.com/photo-1562322140-8baeececf3df?w=1600&q=80'" /></div>
+      <div class="slide"><img src="https://www.marieclairesalon.in/img/ban-5.jpg" alt="Marie Claire" loading="lazy"  onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80'" /></div>
+    </div>
+    <button class="slider-arrow prev" id="arrow-prev" aria-label="Previous">&#8249;</button>
+    <button class="slider-arrow next" id="arrow-next" aria-label="Next">&#8250;</button>
+    <div class="slider-dots" id="slider-dots"></div>
+  </div>
+
+  <div class="section-header">
+    <h2>Our Services</h2>
+    <div class="section-rule"><span class="section-rule-text">Thoraipakkam OMR · Chennai</span></div>
+  </div>
+  <div class="home-tiles">
+    <div class="tile" onclick="showPage('services')">
+      <img src="https://www.marieclairesalon.in/img/home-1.jpg" alt="Women" onerror="this.src='https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80'" loading="lazy" />
+      <div class="tile-label"><span>Women</span><span class="tile-arrow">›</span></div>
+    </div>
+    <div class="tile" onclick="showPage('services')">
+      <img src="https://www.marieclairesalon.in/img/home-2.jpg" alt="Men" onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80'" loading="lazy" />
+      <div class="tile-label"><span>Men</span><span class="tile-arrow">›</span></div>
+    </div>
+  </div>
+
+  <!-- ── GOOGLE REVIEWS ── -->
+  <div class="reviews-section">
+    <div class="section-header" style="padding-top:0;padding-bottom:32px;">
+      <h2>Our Reviews</h2>
+    </div>
+    <div class="reviews-header-row">
+      <div class="reviews-header-left">
+        <h3>What our clients say about us</h3>
+        <div class="stars-row">
+          <span class="stars">★★★★★</span>
+          <span class="review-count">294 reviews</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <span class="overall-score">5.00</span>
+        <a class="write-review-btn" href="https://g.page/r/review" target="_blank" rel="noopener">Write a review</a>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-top"><div><span class="review-num">5</span><span class="review-stars">★★★★★</span></div><span class="review-date">May 06, 2026</span></div>
+        <p class="review-text">Awesome service by Bicky — absolutely great service. Highly recommended!</p>
+        <div class="review-footer"><div class="reviewer-info"><div class="reviewer-avatar" style="background:#6c757d;">IM</div><span class="reviewer-name">Ivan martin</span></div><svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg></div>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><div><span class="review-num">5</span><span class="review-stars">★★★★★</span></div><span class="review-date">May 06, 2026</span></div>
+        <p class="review-text">Got a haircut from this salon by a stylist named Anita. Had a really nice experience.</p>
+        <div class="review-footer"><div class="reviewer-info"><div class="reviewer-avatar" style="background:#1a73e8;">DM</div><span class="reviewer-name">D M</span></div><svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg></div>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><div><span class="review-num">5</span><span class="review-stars">★★★★★</span></div><span class="review-date">May 05, 2026</span></div>
+        <p class="review-text">I really enjoy the service, biki top stylist did my hair cut. The hair cut is really good, I am really happy with the service wow!</p>
+        <div class="review-footer"><div class="reviewer-info"><div class="reviewer-avatar" style="background:#34A853;">T</div><span class="reviewer-name">Twinkle</span></div><svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg></div>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><div><span class="review-num">5</span><span class="review-stars">★★★★★</span></div><span class="review-date">May 05, 2026</span></div>
+        <p class="review-text">We did a haircut for me and daughter, they did a great job. Shahin did a great job, thanks guys — we loved it!</p>
+        <div class="review-footer"><div class="reviewer-info"><div class="reviewer-avatar" style="background:#EA4335;">SR</div><span class="reviewer-name">syndhiya ram</span></div><svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── INSTAGRAM ── -->
+  <div class="section-header" style="padding-top:52px;">
+    <h2>Follow Our Work</h2>
+    <div class="section-rule"><span class="section-rule-text">@marieclaire.thoraipakkamomr · Instagram</span></div>
+  </div>
+  <div class="insta-section">
+    <div class="insta-grid">
+      <div class="insta-embed-wrap"><div class="insta-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#bbb" stroke="none"/></svg><span>Loading…</span></div><iframe src="https://www.instagram.com/p/DXUBOUokigv/embed/captioned/" width="400" height="500" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media" loading="lazy" style="width:100%;border:none;overflow:hidden;" title="Instagram post 1"></iframe></div>
+      <div class="insta-embed-wrap"><div class="insta-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#bbb" stroke="none"/></svg><span>Loading…</span></div><iframe src="https://www.instagram.com/p/DXoZiO7ku6c/embed/captioned/" width="400" height="500" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media" loading="lazy" style="width:100%;border:none;overflow:hidden;" title="Instagram post 2"></iframe></div>
+      <div class="insta-embed-wrap"><div class="insta-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#bbb" stroke="none"/></svg><span>Loading…</span></div><iframe src="https://www.instagram.com/p/DXg_Q9yktJ8/embed/captioned/" width="400" height="500" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media" loading="lazy" style="width:100%;border:none;overflow:hidden;" title="Instagram post 3"></iframe></div>
+    </div>
+    <a class="insta-follow-btn" href="https://www.instagram.com/marieclaire.thoraipakkamomr/" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      Follow Us on Instagram
+    </a>
+  </div>
+
+  <footer>
+    <strong>Marie Claire Salon - Thoraipakkam, OMR </strong> &nbsp;·&nbsp; Franchise operated by Akshara Beauty Services<br>
+    📞 Landline: <a href="tel:+914447914421">+91 44-47914421</a> &nbsp;·&nbsp;
+    Mobile: <a href="tel:+919840029856">+91 98400 29856</a> &nbsp;/&nbsp;
+    <a href="tel:+919840029857">+91 98400 29857</a><br>
+    ✉ <a href="mailto:thoraipakkam@marieclairesalon.in">thoraipakkam@marieclairesalon.in</a><br>
+    &copy; 2026 Akshara Beauty Services &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp;
+  </footer>
+</section>
+
+
+<!-- ══════════════════════════════════
+     SPECIAL OFFERS PAGE
+     Uses the actual uploaded poster
+     images from the client
+══════════════════════════════════ -->
+<section class="page" id="page-offers">
+
+  <div class="offers-hero">
+    <h1>Special Offers</h1>
+    <p>Thoraipakkam OMR · Chennai</p>
+    <p class="hero-sub">Exclusive deals at Grace Towers — claim via WhatsApp or walk in</p>
+  </div>
+
+  <div class="offers-wrapper">
+
+    <div class="offer-posters-intro">
+      <h2>Current Offers</h2>
+      <p>Thoraipakkam, OMR Branch &nbsp;·&nbsp; Limited Period</p>
+    </div>
+
+    <!--
+      OFFER POSTERS GRID
+      Images are the exact promotional posters uploaded by the client.
+      Each shows the full poster (no crop) with a WhatsApp claim CTA below.
+    -->
+    <div class="offers-poster-grid">
+
+      <!-- Offer 1: Hair Botox ₹6,999 -->
+      <div class="offer-poster-card">
+        <img class="offer-poster-img"
+          src="offer-hair-botox.png"
+          alt="Hair Botox Any Length ₹6,999 – Marie Claire Paris Thoraipakkam OMR"
+          loading="lazy" />
+        <div class="offer-poster-footer">
+          <div>
+            <p class="offer-poster-title">Hair Botox (Any Length)</p>
+            <p class="offer-poster-price">₹6,999* + Complimentary Creative Haircut worth ₹1,800</p>
+          </div>
+          <a class="offer-claim-btn"
+            href="https://wa.me/919840029857?text=Hello%20Marie%20Claire%20Salon%20Thoraipakkam%20OMR!%20I%20would%20like%20to%20claim%20the%20Hair%20Botox%20offer%20at%20%E2%82%B96%2C999%20(any%20length)%20with%20complimentary%20Creative%20Haircut.%20Please%20confirm%20availability.%20Thank%20you!"
+            target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Claim Offer
+          </a>
+        </div>
+      </div>
+
+      <!-- Offer 2: Global Hair Colour ₹4,999 -->
+      <div class="offer-poster-card">
+        <img class="offer-poster-img"
+          src="offer-global-colour.png"
+          alt="Global Hair Colour Any Length ₹4,999 – Marie Claire Paris Thoraipakkam OMR"
+          loading="lazy" />
+        <div class="offer-poster-footer">
+          <div>
+            <p class="offer-poster-title">Global Hair Colour (Any Length)</p>
+            <p class="offer-poster-price">₹4,999* + Free Haircut worth ₹1,800 Included</p>
+          </div>
+          <a class="offer-claim-btn"
+            href="https://wa.me/919840029857?text=Hello%20Marie%20Claire%20Salon%20Thoraipakkam%20OMR!%20I%20would%20like%20to%20claim%20the%20Global%20Hair%20Colour%20offer%20at%20%E2%82%B94%2C999%20(any%20length)%20with%20free%20haircut.%20Please%20confirm%20availability.%20Thank%20you!"
+            target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Claim Offer
+          </a>
+        </div>
+      </div>
+
+      <!-- Offer 3: Advanced Haircut + Moroccan Hair Spa ₹3,499 -->
+      <div class="offer-poster-card">
+        <img class="offer-poster-img"
+          src="offer-haircut-spa.png"
+          alt="Advanced Haircut + Moroccan Hair Spa ₹3,499 – Marie Claire Paris Thoraipakkam OMR"
+          loading="lazy" />
+        <div class="offer-poster-footer">
+          <div>
+            <p class="offer-poster-title">Advanced Haircut + Moroccan Hair Spa</p>
+            <p class="offer-poster-price"><s style="color:var(--mid)">₹5,200</s>&nbsp; ₹3,499* · Save Big, Look Stunning</p>
+          </div>
+          <a class="offer-claim-btn"
+            href="https://wa.me/919840029857?text=Hello%20Marie%20Claire%20Salon%20Thoraipakkam%20OMR!%20I%20would%20like%20to%20claim%20the%20Advanced%20Haircut%20%2B%20Moroccan%20Hair%20Spa%20offer%20at%20%E2%82%B93%2C499.%20Please%20confirm%20availability.%20Thank%20you!"
+            target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Claim Offer
+          </a>
+        </div>
+      </div>
+
+      <!-- Offer 4: Hydra Facial Flat 30% Off ₹3,999 -->
+      <div class="offer-poster-card">
+        <img class="offer-poster-img"
+          src="offer-hydra-facial.png"
+          alt="Hydra Facial Flat 30% Off Starting ₹3,999 – Marie Claire Paris Thoraipakkam OMR"
+          loading="lazy" />
+        <div class="offer-poster-footer">
+          <div>
+            <p class="offer-poster-title">Hydra Facial — Flat 30% Off</p>
+            <p class="offer-poster-price">Starting from ₹3,999* · Say goodbye to clogged pores</p>
+          </div>
+          <a class="offer-claim-btn"
+            href="https://wa.me/919840029857?text=Hello%20Marie%20Claire%20Salon%20Thoraipakkam%20OMR!%20I%20would%20like%20to%20claim%20the%20Hydra%20Facial%20offer%20(Flat%2030%25%20Off%2C%20starting%20%E2%82%B93%2C999).%20Please%20confirm%20availability.%20Thank%20you!"
+            target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Claim Offer
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /offers-poster-grid -->
+
+    <p class="offer-terms">
+      *T&amp;C Apply · Taxes extra as applicable · Offers valid at Thoraipakkam OMR branch only<br>
+      Cannot be combined with MC Prime discount or other offers · Valid for single use only<br>
+      To book: <a href="tel:+919840029857">98400 29857</a> / <a href="tel:+919840029856">98400 29856</a> / <a href="tel:+914447914421">044-47914421</a> &nbsp;·&nbsp;
+      <a href="mailto:thoraipakkam@marieclairesalon.in">thoraipakkam@marieclairesalon.in</a>
+    </p>
+  </div>
+
+  <footer>
+    <strong>Marie Claire Salon - Thoraipakkam, OMR </strong> &nbsp;·&nbsp; Franchise operated by Akshara Beauty Services<br>
+    📞 Landline: <a href="tel:+914447914421">+91 44-47914421</a> &nbsp;·&nbsp;
+    Mobile: <a href="tel:+919840029856">+91 98400 29856</a> &nbsp;/&nbsp;
+    <a href="tel:+919840029857">+91 98400 29857</a><br>
+    ✉ <a href="mailto:thoraipakkam@marieclairesalon.in">thoraipakkam@marieclairesalon.in</a><br>
+    &copy; 2026 Akshara Beauty Services &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp;
+  </footer>
+</section>
+
+
+<!-- ══════════════════════════════════
+     SERVICES PAGE
+══════════════════════════════════ -->
+<section class="page" id="page-services">
+  <div class="services-hero">
+    <h1>Services</h1>
+    <p>Men &amp; Women &nbsp;·&nbsp; Thoraipakkam OMR</p>
+  </div>
+  <div class="section-header" style="padding-top:40px;">
+    <h2>Service Menu</h2>
+    <div class="section-rule"><span class="section-rule-text">Prices in ₹ · Taxes Extra · MC Prime: 20% off</span></div>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-card-img-wrap"><img src="https://www.marieclairesalon.in/img/home-1.jpg" alt="Women" onerror="this.src='https://images.unsplash.com/photo-1562322140-8baeececf3df?w=700&q=80'" loading="lazy" /></div>
+      <div class="svc-card-body">
+        <p class="svc-card-eyebrow">Beauty &amp; Wellness</p>
+        <h2 class="svc-card-title">Women</h2>
+        <p class="svc-card-note">★ MC Prime members get 20% off · *Taxes extra</p>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Haircuts</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Haircut</span><span class="price-val">₹1,200</span></div>
+          <div class="price-row"><span>Creative Haircut</span><span class="price-val">₹1,800</span></div>
+          <div class="price-row"><span>Split Ends Mender</span><span class="price-val">₹1,300</span></div>
+          <div class="price-row"><span>Haircut — Girl below 10 yrs</span><span class="price-val">₹650</span></div>
+        </div></div>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Hair Colour</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Global Colour — Up to Neck</span><span class="price-val">₹4,000</span></div>
+          <div class="price-row"><span>Up to Shoulder</span><span class="price-val">₹6,000</span></div>
+          <div class="price-row"><span>Root Touch Up — 2 Inches</span><span class="price-val">₹1,900</span></div>
+          <div class="price-row"><span>Highlights — Up to Neck</span><span class="price-val">₹4,000</span></div>
+          <div class="price-row"><span>Creative Highlights — Up to Neck</span><span class="price-val">₹5,500</span></div>
+        </div></div>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Hair Makeover</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Straightening — Up to Neck</span><span class="price-val">₹6,500</span></div>
+          <div class="price-row"><span>Pro-Keratin — Up to Neck</span><span class="price-val">₹6,600</span></div>
+          <div class="price-row"><span>Botox (Hair) — Up to Neck</span><span class="price-val">₹7,000</span></div>
+          <div class="price-row"><span>Nanoplastia — Up to Neck</span><span class="price-val">₹8,000</span></div>
+        </div></div>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Facials &amp; Skin</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Ayurvedic Facial</span><span class="price-val">₹1,900</span></div>
+          <div class="price-row"><span>Glutathione Vit C Facial</span><span class="price-val">₹4,500</span></div>
+          <div class="price-row"><span>Pure Gold 24kt Facial</span><span class="price-val">₹6,000</span></div>
+          <div class="price-row"><span>Essential Hydra Facial</span><span class="price-val">₹5,500</span></div>
+          <div class="price-row"><span>Luxury Hydra Facial</span><span class="price-val">₹10,000</span></div>
+        </div></div>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Manicure &amp; Pedicure</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Coffee Manicure</span><span class="price-val">₹1,250</span></div>
+          <div class="price-row"><span>Ice Cream Manicure</span><span class="price-val">₹2,100</span></div>
+          <div class="price-row"><span>Coffee Pedicure</span><span class="price-val">₹1,550</span></div>
+          <div class="price-row"><span>Ice Cream Pedicure</span><span class="price-val">₹2,400</span></div>
+        </div></div>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Bridal Makeup</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Classic</span><span class="price-val">₹12,000</span></div>
+          <div class="price-row"><span>HD Finish</span><span class="price-val">₹17,000</span></div>
+          <div class="price-row"><span>Air Brush Finish</span><span class="price-val">₹30,000</span></div>
+          <div class="price-row"><span>Celebrity Expert</span><span class="price-val">₹35,000</span></div>
+        </div></div>
+        <div class="prime-note">★ MC Prime: 20% off all prices · *Taxes extra</div>
+        <a class="dl-btn" href="women-menu.pdf" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/></svg>Download Full Menu (PDF)</a>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-img-wrap"><img src="https://www.marieclairesalon.in/img/home-2.jpg" alt="Men" onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&q=80'" loading="lazy" /></div>
+      <div class="svc-card-body">
+        <p class="svc-card-eyebrow">Grooming &amp; Style</p>
+        <h2 class="svc-card-title">Men</h2>
+        <p class="svc-card-note">★ MC Prime members get 20% off · *Taxes extra</p>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Haircuts &amp; Shaving</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Haircut</span><span class="price-val">₹750</span></div>
+          <div class="price-row"><span>Creative Haircut</span><span class="price-val">₹1,000</span></div>
+          <div class="price-row"><span>Beard Trim</span><span class="price-val">₹300</span></div>
+          <div class="price-row"><span>Beard Styling</span><span class="price-val">₹400</span></div>
+          <div class="price-row"><span>Clean Shave</span><span class="price-val">₹300</span></div>
+        </div></div>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Hair Colour</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Global Hair Colour</span><span class="price-val">₹1,900</span></div>
+          <div class="price-row"><span>Global (Ammonia Free)</span><span class="price-val">₹2,185</span></div>
+          <div class="price-row"><span>Highlights</span><span class="price-val">₹2,500</span></div>
+          <div class="price-row"><span>Global + Highlights</span><span class="price-val">₹4,200</span></div>
+        </div></div>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Hair Makeover</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Straightening</span><span class="price-val">₹4,000</span></div>
+          <div class="price-row"><span>Pro-Keratin</span><span class="price-val">₹5,000</span></div>
+          <div class="price-row"><span>Botox (Hair)</span><span class="price-val">₹5,500</span></div>
+          <div class="price-row"><span>Nanoplastia</span><span class="price-val">₹5,800</span></div>
+        </div></div>
+        <div class="price-section-toggle" onclick="toggleSection(this)"><span class="toggle-title">Facials &amp; Skin</span><span class="toggle-icon">▾</span></div>
+        <div class="price-section-body"><div class="price-category" style="padding-top:8px;">
+          <div class="price-row"><span>Dapper Dude Cleanup</span><span class="price-val">₹1,500</span></div>
+          <div class="price-row"><span>Ayurvedic Facial</span><span class="price-val">₹1,900</span></div>
+          <div class="price-row"><span>Glutathione Vit C Facial</span><span class="price-val">₹4,500</span></div>
+          <div class="price-row"><span>Essential Hydra Facial</span><span class="price-val">₹5,500</span></div>
+        </div></div>
+        <div class="prime-note">★ MC Prime: 20% off all prices · *Taxes extra</div>
+        <a class="dl-btn" href="men-menu.pdf" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/></svg>Download Full Menu (PDF)</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto 60px;padding:0 24px;text-align:center;">
+    <p style="font-family:var(--nav-font);font-size:0.62rem;color:var(--mid);">For appointments: <a href="tel:+919840029857" style="color:var(--red);text-decoration:underline;">98400 29857</a></p>
+  </div>
+  <footer>
+    <strong>Marie Claire Salon - Thoraipakkam, OMR </strong> &nbsp;·&nbsp; Franchise operated by Akshara Beauty Services<br>
+    📞 Landline: <a href="tel:+914447914421">+91 44-47914421</a> &nbsp;·&nbsp;
+    Mobile: <a href="tel:+919840029856">+91 98400 29856</a> &nbsp;/&nbsp;
+    <a href="tel:+919840029857">+91 98400 29857</a><br>
+    ✉ <a href="mailto:thoraipakkam@marieclairesalon.in">thoraipakkam@marieclairesalon.in</a><br>
+    &copy; 2026 Akshara Beauty Services &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp;
+  </footer>
+</section>
+
+
+<!-- ══════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════ -->
+<section class="page" id="page-about">
+  <img class="about-banner" src="https://www.marieclairesalon.in/img/about.jpg" alt="About" onerror="this.src='https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1600&q=80'" loading="lazy" />
+  <div class="section-header"><h2>About Us</h2><div class="section-rule"><span class="section-rule-text">Thoraipakkam OMR · Chennai</span></div></div>
+  <div class="about-layout">
+    <div class="about-copy">
+      <h3>About Marie Claire Paris</h3>
+      <p>Marie Claire is a leading international brand founded by Jean Prouvost, first published in France in 1937. Publishing in 28+ countries across 5 continents, reaching 17 million readers monthly with 26 million+ social media followers.</p>
+      <p>Based on its worldwide popularity, Marie Claire holds an extended licensing program with 50+ global partners covering fashion, cosmetics, perfumes, and beauty services.</p>
+      <h4>B2C Network LLP — India Licensee</h4>
+      <p>B2C Network LLP is the exclusive India Licensee for Marie Claire Paris. Our founders have 15+ years of experience operating 200+ outlets across Salons, Spas, and Vocational Academies.</p>
+      <h4>Our Mission</h4>
+      <p>Deliver world-class beauty services where clients feel at home, and train skilled manpower through Marie Claire Paris IIWA Academy.</p>
+      <ul class="about-list" style="margin-top:20px;">
+        <li>Internationally trained stylists</li>
+        <li>Premium hair &amp; skincare brands</li>
+        <li>Hygienic, air-conditioned interiors</li>
+        <li>Personalised consultation for every client</li>
+        <li>Dedicated sections for Men &amp; Women</li>
+      </ul>
+    </div>
+    <div>
+      <div class="addr-card">
+        <p class="addr-eyebrow">Visit Us</p>
+        <p class="addr-name">Marie Claire Paris Salon</p>
+        <p class="addr-branch">Thoraipakkam OMR · Chennai</p>
+        <div class="addr-row">
+          <span class="addr-icon">📍</span>
+          <p class="addr-text">Grace Towers, 2nd Floor,<br>Plot No 185, Rajiv Gandhi Salai,<br>Near KFC, NJK Avenue,<br>Thoraipakkam, Chennai,<br>Tamil Nadu – 600 097</p>
+        </div>
+        <div class="addr-row">
+          <span class="addr-icon">📞</span>
+          <p class="addr-text">
+            Landline: <a href="tel:+914447914421">044-47914421</a><br>
+            Mobile: <a href="tel:+919840029856">98400 29856</a><br>
+            Mobile: <a href="tel:+919840029857">98400 29857</a>
+          </p>
+        </div>
+        <div class="addr-row">
+          <span class="addr-icon">✉</span>
+          <p class="addr-text"><a href="mailto:thoraipakkam@marieclairesalon.in">thoraipakkam@marieclairesalon.in</a></p>
+        </div>
+        <div class="addr-divider"></div>
+        <a class="wa-btn"
+          href="https://wa.me/919840029857?text=Hello%20Marie%20Claire%20Salon%20Thoraipakkam%20OMR!%20I%20would%20like%20to%20know%20more%20about%20your%20services%20and%20book%20an%20appointment.%20Thank%20you!"
+          target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <div class="map-box">
+          <iframe title="Marie Claire Salon Thoraipakkam" src="https://maps.google.com/maps?q=12.9256,80.2275&z=17&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p style="font-family:var(--nav-font);font-size:0.54rem;color:var(--mid);margin-top:7px;">📌 Grace Towers, Plot 185, Rajiv Gandhi Salai, near KFC, NJK Avenue, Thoraipakkam — 600097</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <strong>Marie Claire Salon - Thoraipakkam, OMR </strong> &nbsp;·&nbsp; Franchise operated by Akshara Beauty Services<br>
+    📞 Landline: <a href="tel:+914447914421">+91 44-47914421</a> &nbsp;·&nbsp;
+    Mobile: <a href="tel:+919840029856">+91 98400 29856</a> &nbsp;/&nbsp;
+    <a href="tel:+919840029857">+91 98400 29857</a><br>
+    ✉ <a href="mailto:thoraipakkam@marieclairesalon.in">thoraipakkam@marieclairesalon.in</a><br>
+    &copy; 2026 Akshara Beauty Services &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp;
+  </footer>
+</section>
+
+
+<!-- ══ JAVASCRIPT ══ -->
+<script>
+  window.salonData = {
+    brand: "Marie Claire Paris Salon",
+    branch: "Thoraipakkam OMR, Chennai",
+    address: "Grace Towers, 2nd Floor, Plot No 185, Rajiv Gandhi Salai, Near KFC, NJK Avenue, Thoraipakkam, Chennai, Tamil Nadu 600097",
+    contact: { landline:"+914447914421", mobile1:"+919840029856", mobile2:"+919840029857", email:"thoraipakkam@marieclairesalon.in" },
+    whatsapp: "919840029857",
+    offers: ["Hair Botox ₹6,999", "Global Colour ₹4,999", "Haircut+Spa ₹3,499", "Hydra Facial ₹3,999"]
+  };
+
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    const btn = document.querySelector('.nav-btn[data-page="' + id + '"]');
+    if (btn) btn.classList.add('active');
+    document.getElementById('main-nav').classList.remove('open');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function toggleMobileNav() {
+    document.getElementById('main-nav').classList.toggle('open');
+  }
+
+  function toggleSection(el) {
+    el.nextElementSibling.classList.toggle('open');
+    el.classList.toggle('open');
+  }
+
+  (function() {
+    const track = document.getElementById('slider-track');
+    const slides = track.querySelectorAll('.slide');
+    const dotsEl = document.getElementById('slider-dots');
+    const total = slides.length;
+    let current = 0, timer;
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    }
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 5000);
+    }
+    document.getElementById('arrow-next').addEventListener('click', () => goTo(current + 1));
+    document.getElementById('arrow-prev').addEventListener('click', () => goTo(current - 1));
+    timer = setInterval(() => goTo(current + 1), 5000);
+  })();
+
+  (function() {
+    const s = document.createElement('script');
+    s.src = 'https://www.instagram.com/embed.js';
+    s.async = true; document.body.appendChild(s);
+  })();
+</script>
+</body>
+</html>
